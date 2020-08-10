@@ -2,6 +2,7 @@ require 'pry'
 
 
 class Animal
+<<<<<<< HEAD
 @@all = []
 attr_accessor :weight, :zoo
 attr_reader :species, :nickname, 
@@ -63,4 +64,16 @@ end
 # up to you to test your code within the run.rb file.
 
 
+=======
+  
+  def Cat 
+  end
+  
+  
+  def Dog 
+  end
+  
+  def Rat 
+  end
+>>>>>>> d71efc2f245247641b02c98fd700dfa383e01388
 

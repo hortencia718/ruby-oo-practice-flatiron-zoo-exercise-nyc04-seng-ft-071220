@@ -2,6 +2,15 @@ require 'pry'
 # require relative 
 
 class Zoo
+  
+  def initialize(name ,location)
+    @name = name 
+    @location =location 
+  end
+  
+  def 
+  
+  
 
     @@all =[]
 
