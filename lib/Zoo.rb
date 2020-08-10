@@ -2,47 +2,77 @@ require 'pry'
 # require relative 
 
 class Zoo
-
+    
+    attr_accessor :name ,:location
+    # getter/setter
     @@all =[]
 
-   attr_accessor :name ,:location
-# getter and setter method combo can change    
 
   def initialize(name ,location)
      @name = name
      @location = location  
      @@all << self
     #   binding.pry
-    # anything you initialize is has  already been born .
-  end
+    # anything you initialize is already known .
+   end
+
 
    def self.all 
-# self is the class of my "zoo"
-    @@all 
-    # this will give us the instance of 
-    end
- 
+       @@all 
+   end
+  # self is the class of my "zoo"
+  # this will give us the instance of self
    
-
-    # def animal_species(string)
-    #     # binding.pry
-    #     Animal.all.select{|animal_name|}
-    #     animal_name 
-    # end
-
-    #  def find_by_species()
-    #     should r/t an array of all the animals in that zoo? which are 
-    #     of that species.
-    #  end 
-
-    #  def animal_nicknames()
-    #  end 
+  
+  def add_animal(animal)
+    # binding.pry
+    animal.zoo = self
+  end
 
 
-end
-# binding.pry
+  def all_animals
+    Animal.all.select do |animal|
+        animal.zoo == self
+    end
+  end
 
-# name.New = 
+
+   def animal_species
+    mapped_arr=self.all_animals.map do |animal|
+        animal.species
+      end
+    mapped_arr.uniq
+    # self.all_animals.map {|animal| animal.species}.uniq 
+    # (in-line block)
+    # self.all_animals.map(&:species).uniq
+   end
+
+   def find_by_species(species)
+    self.all_animals.select do |animal|
+        animal.species == species
+      end
+   end
+
+  def animal_nicknames
+    self.all_animals.map do |animal|
+        animal.nickname
+    end
+    # self.all_animals.map {|animal| animal.nickname}
+    # self.all_animals.map (&:nickname)
+  end
+
+   def self.find_by_location(location)
+    self.all_animals.select do |animal|
+        animal.zoo.location == location
+     end
+    # self.all_animals.select {|animal| animal.zoo.location == location}
+   end
+end 
+
+
+ binding.pry
+
+
 
 # Zoo Class ------ deliverables 
 #  [x ]A zoo should be initialized 

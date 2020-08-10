@@ -2,11 +2,13 @@ require 'pry'
 
 
 class Animal
-@@all = []
-attr_accessor :weight, :zoo
-attr_reader :species, :nickname, 
 
-  def initialize (nickname, weight, species,zoo)
+attr_accessor :weight, :zoo
+attr_reader :species, :nickname 
+
+ @@all =[]
+
+  def initialize(nick_name, weight, species)
        @nickname = nickname
        @weight = weight 
        @species = species
@@ -18,38 +20,36 @@ attr_reader :species, :nickname,
    def self.all 
     @@all 
    end 
-#    def nickname(animal)
-# # should r/t a nickname of that animal
-#    end 
 
-#     def weight(animal)
-#         # should r/t weight of that animal 
-#     end
+    def add_animal(animal)
+    #  binding.pry
+    animal.zoo = self
+    end
 
-#     def species(animal)
-#         # should r/t the animal species
-#     end 
 
-#     def Animal.all 
-#         @@all
-#     end
-    
-#     def zoo 
-#         @@all
-#     end
+    def all_animals
+    Animal.all.select do |animal|
+        animal.zoo == self
+      end
+   end
 
-#     def find_by_species() 
-#         # .find species
-#     end
+   def self.find_by_species(species)
+    self.all.select do |animal|
+        animal.species == species 
+    end
+end
+
+
 end 
 
 
-#  binding.pry 
+#   binding.pry 
+ 
  
 # ------ deliverables
 
-# [ ]An animal should be instantiated with the species (e.g. "Cat", "Dog", "Rat"),
-# [ ]a numerical weight and a nickname. Keep in mind that the animal's species and nickname should not be able to change,
+# [X]An animal should be instantiated with the species (e.g. "Cat", "Dog", "Rat"),
+# [X]a numerical weight and a nickname. Keep in mind that the animal's species and nickname should not be able to change,
 #     but its weight can.
 # [ ]Animal#nickname should return the nickname of the animal.
 # [ ]Animal#weight should return the weight of the animal.
